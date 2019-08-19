@@ -17,4 +17,4 @@ jyk 金色海洋
 GNU GENERAL PUBLIC LICENSE Version 3。详情请参阅 LICENSE.md
 
 # 截图
-![image]
+![image](https://img2018.cnblogs.com/blog/17148/201908/17148-20190820075011298-1550354579.png)
