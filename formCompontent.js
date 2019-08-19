@@ -223,7 +223,7 @@
                 <span>{{item.name}}</span>
             </label> 
 
-        </span>
+        </span> 
 
         <span v-else-if="meta.controlType === 155 ">
             <!--复选框-->
