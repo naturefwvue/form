@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>生成表单描述信息的辅助工具</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <script type="text/javascript" src="formHelpConfig.js?v=2"></script>
+    <script type="text/javascript" src="formCompontent.js"></script>
+    <link type="text/css" rel="stylesheet" media="screen" href="/Manage/css/mangoGlobal.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="/Manage/css/mis-style-p.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="/Manage/css/MisStyle_v2.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="/Manage/css/debugCss.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="/Manage/css/css2.css">
+
+    <meta charset="utf-8" />
+
+    <script  type="text/javascript">
+
+    </script>
+
+</head>
+
+<body >
+<div id="help">
+    <div class="tabsbox" style="float: left;width: 160px;height: 500px;border: 1px solid #333; ">
+        <div class="tabnav">
+            <ul class="tabsmenu">
+                <li id="divCtl10" @click="tabChange('text')" :class="{'current':ctlTypeState.textShow}">文本框</li>
+                <li id="divCtl20" @click="tabChange('list')" :class="{'current':!ctlTypeState.textShow}">列表框</li>
+            </ul>
+        </div>
+        <div class="tabcontent">
+            <div id="divKuang10" class="layout" v-show="ctlTypeState.textShow">
+                <div  v-for="key in ctlTypeText"   :id="'divCtl'+key" :key="'ctlT'+key">
+                    {{ctlMeta[key].name}}
+                </div>
+                
+            </div>
+            <div id="divKuang20" class="layout"  v-show="!ctlTypeState.textShow">
+                <div  v-for="key in ctlTypeList"   :id="'divCtl'+key" :key="'ctlT'+key">
+                    {{ctlMeta[key].name}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="float: left;">
+        <div id="divText" style="width: 470px;height: 600px; padding: 10px; border: 1px solid #333;display: block;">
+            <span id="FrmCommonForm">
+                <table rules="all" class="tablem tableClass02">
+                    <tbody>
+                        <tr v-for="item in ctlMeta[formValue.controlType].showIds " 
+                            :id="'tr'+formControl[item].controlId" 
+                            :key="'tr'+formControl[item].controlId" style="display: table-row;">
+                                <td align="right">{{formControl[item].colName}}：</td>
+                                <td align="left">
+                                    <my-input v-model="formValue[formControl[item].controlId]" :meta="formControl[item]" ></my-input>
+                                    {{item.controlId}}
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span>
+        </div>
+       
+    </div>
+
+    
+    <div style="float: left;text-align:left;width: 330px;height: 500px;padding: 5px;border: 1px solid #333;">
+        代码：<br>
+        {{formValue.controlType}}<br>{{json}}<br>{{formValue.list}}
+        <textarea id="txtMeta" v-model="showMsg" name="S1" cols="40" rows="30"></textarea>
+    </div>
+    <div style="float: left;text-align:left;width: 430px;height: 500px;padding: 5px;border: 1px solid #333;">
+            预览<br>
+            <my-input v-model="viewValue" :meta="showView"></my-input>
+            <br><br><br><br><br><br>
+            值：{{viewValue}}
+        </div>
+        
+    <div style="clear:both"></div>
+</div>
+
+    <script type="text/javascript">
+
+        var form = new Vue({
+            el: '#help',
+            data: {
+                json:'',
+                ctlTypeState:{
+                    textShow:true,
+                    
+                },
+                
+                ctlMeta:{},
+                ctlTypeText:[100, 101, 102, 103, 104, 105, 106, 107,
+                    108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118] ,
+                ctlTypeList:[150,151,152,153,154,155]  ,
+                
+                formControl: {
+               
+                },
+                viewValue:'',
+                formValue: {
+                  
+                }
+            },
+            created: function () {
+                
+                this.formControl = formControl;  //控件描述
+                this.formValue = formModel;  //设置取值的实体类
+                this.ctlMeta = controlMeta;  //控件字典
+ 
+
+            },
+            computed:{
+                showMsg:function(){
+                    var re = "";
+
+                     for(var key in this.formValue) {
+                         var val = this.formValue[key];
+
+                         var isNum = !isNaN(val);
+                         if (val === 'true' || val === 'false')
+                            isNum = true;
+
+                         re += '\r\n    ' + key + ":";
+                         if (!isNum) re +="'";
+                         re += this.formValue[key];
+                         if (!isNum) re +="'";
+                           
+                     }
+
+                    return re;
+                },
+                showView:function(){
+                    var re = '{"a":""';
+                     
+                    for(var key in this.formValue) {
+                        if (key !== 'review') {
+                            var val = this.formValue[key];
+                            var isNum = !isNaN(val);
+                            if (val === 'true' || val === 'false')
+                                isNum = true;
+
+                            if (val === '' || val === null)
+                                isNum = false;
+                            if (val.length >0){
+                                 if (val.substring(0,1) === '[')
+                                    isNum = true;
+                                if (val.substring(0,1)=== '{')
+                                    isNum = true;
+
+                                val = val.replace(/\n/g,'').replace(/\r/g,'');
+                            }
+                           
+
+                            re += ',"' + key + '":';
+                            if (!isNum) re +='"';
+                            re += val;
+                            if (!isNum) re +='"';
+                            
+                        }
+                    }
+
+                    re+="}";
+
+                    var j = "";
+
+                    try{
+                        j=JSON.parse(re);
+                    }
+                    catch{
+                        alert('描述信息格式不正确，不能转换成json');
+                        j=formModel
+                    }
+ 
+                    this.json = j;
+                    return j;
+                }
+
+            },
+            methods: {
+                //切换tab标签
+                tabChange:function(type){
+                    //显示文本框类
+                    if (type === "text")
+                        this.ctlTypeState.textShow = true;
+                    else
+                        this.ctlTypeState.textShow = false;
+                    
+                    //显示下拉列表框类
+
+                },
+                fun: function (data) {
+                    alert(data);
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
