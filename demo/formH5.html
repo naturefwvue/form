@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>html5表单元素演示</title>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" media="screen" href="../css/mangoGlobal.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="../css/mis-style-p.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="../css/MisStyle_v2.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="../css/debugCss.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="../css/css2.css">
+
+</head>
+<body>
+<div >
+    <form >
+        <table id="tblForm" rules="all" class="table_default1">
+            <tbody>
+            <tr id="tr7000010">
+                <td align="right" style="text-align: right;">单行文本：</td>
+                <td>
+                    <input name="c7000010" type="text" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000020">
+                <td align="right" style="text-align: right;">密码：</td>
+                <td>
+                    <input name="c7000020" type="password" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000030">
+                <td align="right" style="text-align: right;">日期（date）：</td>
+                <td>
+                    <input name="c7000030" type="date" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000040">
+                <td align="right" style="text-align: right;">日期（datetime-local）：</td>
+                <td>
+                    <input name="c7000040" type="datetime-local" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000050">
+                <td align="right" style="text-align: right;">时间（time）：</td>
+                <td>
+                    <input name="c7000050" type="time" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000060">
+                <td align="right" style="text-align: right;">月份（month）：</td>
+                <td>
+                    <input name="c7000060" type="month" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000070">
+                <td align="right" style="text-align: right;">周（week）：</td>
+                <td>
+                    <input name="c7000070" type="week" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000080">
+                <td align="right" style="text-align: right;">上传文件（file）：</td>
+                <td>
+                    <input name="c7000080" type="file" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000090">
+                <td align="right" style="text-align: right;">选择颜色（color）：</td>
+                <td>
+                    <input name="c7000090" type="color" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000100">
+                <td align="right" style="text-align: right;">数字（number）：</td>
+                <td>
+                    <input name="c7000100" type="number" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000110">
+                <td align="right" style="text-align: right;">电话（tel）：</td>
+                <td>
+                    <input name="c7000110" type="tel" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000120">
+                <td align="right" style="text-align: right;">电子邮件（email）：</td>
+                <td>
+                    <input name="c7000120" type="email" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000130">
+                <td align="right" style="text-align: right;">网址（url）：</td>
+                <td>
+                    <input name="c7000130" type="url" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000140">
+                <td align="right" style="text-align: right;">滑块（range）：</td>
+                <td>
+                    <input name="c7000140" type="range" class="cssTxt input_t1" maxlength="100" size="10">
+                </td>
+            </tr>
+            <tr id="tr7000150">
+                <td align="right" style="text-align: right;">查询（search）：</td>
+                <td>
+                    <input   name="c7000150" type="search" list="url_list"  class="cssTxt input_t1" maxlength="100" size="20">
+                    <datalist id="url_list">
+                        <option label="W3School" value="http://www.W3School.com.cn" />
+                        <option label="Google" value="http://www.google.com" />
+                        <option label="Microsoft" value="http://www.microsoft.com" />
+                    </datalist>
+
+
+                </td>
+            </tr>
+            <tr id="tr7000160">
+                <td align="right" style="text-align: right;">多行文本框：</td>
+                <td>
+                    <textarea   placeholder="多行测试"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>单选组 </td>
+                <td>
+                    <input id="ctrl_1010090_0" list="url_list1" type="radio" name="c1010090" value="1" class="radio_g_s" warning="请填写去掉结尾的TD">
+                    <label for="ctrl_1010090_0" class="radio_g_t">去掉</label>
+                
+                    <input id="ctrl_1010090_1" type="radio" name="c1010090" value="0" class="radio_g_s" warning="请填写去掉结尾的TD">
+                    <label for="ctrl_1010090_1" class="radio_g_t">不去掉</label>
+
+                    <datalist id="url_list1">
+                            <option label="W3School" value="http://www.W3School.com.cn" />
+                            <option label="Google" value="http://www.google.com" />
+                            <option label="Microsoft" value="http://www.microsoft.com" />
+                        </datalist>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </form>
+</div>
+</body>
+</html>

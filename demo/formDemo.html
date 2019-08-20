@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>表单组件的demo</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <script type="text/javascript" src="formconfig.js?v=2"></script>
+    <script type="text/javascript" src="../formCompontent.js?v=2"></script>
+  
+	<meta charset="utf-8" />
+</head>
+<body style="font-size: 30px;">
+组件11
+<div id="components-demo">
+    <my-input v-model="formValue.v1" :meta="formControl.c1" ></my-input>
+     {{formValue.v1}}
+</div>
+
+<script  type="text/javascript">
+
+    var form = new Vue({ 
+        el: '#components-demo',
+        data:{
+            formControl:{
+                c1:{
+                    //辅助
+                    controlId: '153', //ColumnID
+                    controlType: 150, //text ControlTypeID
+                    colName: '姓名', //ColName
+                    isClear: false, //isClear  连续添加时是否清空
+                 
+                    //通用
+                    
+                    disabled: false,  //不可用
+                    required: true, //必填 CheckTypeID
+                    pattern: '', //用正则做验证。CheckTypeID CheckUserDefined
+                    tabIndex:0, // tab 键顺序
+                    class:'cssTxt input_t1',
+
+                    //多行文本
+                    rows:5,  //行数
+                    cols:100, //列数
+
+                    //文本框类
+                    name:'',
+                    value: '', //DefaultValue
+                    title: '', //ColTitle ColHelp
+                    placeholder: '请输入姓名', //CheckTip
+                    readonly: false, //只读 ControlState
+                    size: 10, //controlExtend.size
+                    maxlength: 20, //controlExtend.maxlen
+                    autocomplete: 'on', //off
+                    min: null, //滑块的最小值
+                    max: null, //滑块的最大值
+                    step: null, //滑块的步长
+                    multiple: false, //是否可以有多个值，用于上传文件
+                    
+                    //listKey:'browsers', //备选文字
+                    //list: ['Internet Explorer', 'Firefox'],
+                  
+                    //选择类
+                    list: [{
+                            "value": "1",
+                            "name": "北京",
+                            "check": false
+                        }, {
+                            value: '2',
+                            name: '上海',
+                            check: false
+                        }, {
+                            value: '3',
+                            name: '广州',
+                            check: false
+                        }
+                    ]
+                
+
+                }
+            },
+            formValue:{
+                v1:''
+            }
+        },
+        created:function(){
+            //this.formControl = formControl;
+
+        },
+        methods:{
+            fun:function(data) {
+                alert(data);
+            }
+        }
+    });
+
+</script >
+
+</body>
+</html>
