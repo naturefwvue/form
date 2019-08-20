@@ -1,0 +1,45 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, 
+small, strike, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, 
+ form, label, button, input 
+{ margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; color: #333; font-weight:normal; font-style:normal; }
+
+fieldset
+{ margin: 10; padding: 2; border: 1; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; color: #333; font-weight:normal; font-style:normal; }
+
+body, input, textarea { font: 12px Tahoma, Arial, SimSun, Helvetica, sans-serif; word-break: break-all; word-wrap: break-word; }
+
+html, body { -webkit-text-size-adjust: none; }
+
+ol, ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+form { padding: 0; margin: 0; border: 0 none; outline: none; }
+
+input { vertical-align: middle; }
+
+a {color:#333; text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {color:#3c9;text-decoration:none;}
+a:active {color:#3c9;}
+
+/*clear float*/
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; *zoom:1;}
+.clearfix { display: block; }
+
+.mar10 { margin: 10px; }
+.margin-top { margin-top: 10px; }
+.margin-right { margin-right: 10px; }
+.margin-bottom { margin-bottom: 10px; }
+.margin-left { margin-left: 10px; }
+
+.padd10 { padding: 10px; }
+.padding-top { padding-top: 10px; }
+.padding-right { padding-right: 10px; }
+.padding-bottom { padding-bottom: 10px; }
+.padding-left { padding-left: 10px; }
+
+.fl { float: left; }
+.fr { float: right; }
