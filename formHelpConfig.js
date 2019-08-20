@@ -1086,7 +1086,7 @@ var formControl={
     disabled:{
         controlId: 'disabled', //ColumnID
         controlType: 155, //text ControlTypeID
-        colName: '是否可用', //ColName
+        colName: '是否禁用', //ColName
         isClear: false, //isClear  连续添加时是否清空
     
         //通用
@@ -1104,7 +1104,7 @@ var formControl={
         list:[
             {
                 id:'1',
-                name:'可用',
+                name:'禁用',
                 selected:true
             } 
         ]

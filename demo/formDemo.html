@@ -5,7 +5,7 @@
     <title>表单组件的demo</title>
     <script type="text/javascript" src="../vue.js"></script>
     <script type="text/javascript" src="formconfig.js?v=2"></script>
-    <script type="text/javascript" src="../formCompontent.js?v=2"></script>
+    <script type="text/javascript" src="../formCompontent.js?v=3"></script>
   
 	<meta charset="utf-8" />
 </head>
@@ -24,8 +24,8 @@
             formControl:{
                 c1:{
                     //辅助
-                    controlId: '153', //ColumnID
-                    controlType: 150, //text ControlTypeID
+                    controlId: '150', //ColumnID
+                    controlType: 155, //text ControlTypeID
                     colName: '姓名', //ColName
                     isClear: false, //isClear  连续添加时是否清空
                  
@@ -55,23 +55,24 @@
                     step: null, //滑块的步长
                     multiple: false, //是否可以有多个值，用于上传文件
                     
-                    //listKey:'browsers', //备选文字
+                    listKey:'browsers', //备选文字
                     //list: ['Internet Explorer', 'Firefox'],
                   
                     //选择类
                     list: [{
-                            "value": "1",
+                            "id": "1",
                             "name": "北京",
                             "check": false
-                        }, {
-                            value: '2',
-                            name: '上海',
-                            check: false
-                        }, {
-                            value: '3',
-                            name: '广州',
-                            check: false
                         }
+                       // , {
+                        //    id: '2',
+                        //    name: '上海',
+                       //     check: false
+                       // }, {
+                       //     id: '3',
+                       //     name: '广州',
+                       //     check: false
+                      //  }
                     ]
                 
 

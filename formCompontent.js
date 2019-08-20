@@ -80,18 +80,22 @@
             //alert(this.meta.type);
             var returnValue = event.target.value;
 
-            if (this.meta.type === "checkbox") {
+            if (this.meta.controlType === 155) {
+                //复选框
+                returnValue = event.target.checked;
+            }
+            else{
                 //alert(event.target.value);
                 //修改绑定情况
                 var selectValue = returnValue;
                 var arr = [];
                 for (var key in this.meta.list) {
                     var item = this.meta.list[key];
-                    if (item.value === selectValue) {
+                    if (item.id === selectValue) {
                         this.meta.list[key].check = event.target.checked;
                     }
                     if (item.check) {
-                        arr.push(item.value);
+                        arr.push(item.id);
                     }
                 }
                 returnValue = arr.join(',');
@@ -113,7 +117,7 @@
             var arr = [];
             for (var i=0;i<items.length;i++) {
                 var item = items[i];
-                arr.push(item.value);
+                arr.push(item.id);
             }
             returnValue = arr.join(',');
  
@@ -141,6 +145,7 @@
             <!--文本框类-->
             <input  :id="'c'+meta.controlId" 
             :name="'c'+meta.controlId"  
+            :disabled="meta.disabled"
             :class="meta.class" 
             :type="type[meta.controlType]" 
             :value="value" 
@@ -163,7 +168,7 @@
 
             <!--文本框的备选项-->
             <datalist v-if="typeof(meta.listKey)!=='undefined'" :id="meta.listKey">
-                <option v-for="item in meta.list" :label="item.value" :value="item.name" />
+                <option v-for="item in meta.list" :label="item.id" :value="item.name" />
             </datalist>
 
         </span>
@@ -210,14 +215,14 @@
             <label role="checkbox" 
             v-for="item in meta.list" 
             class="checkbox_g_t" 
-            :key="item.value"  > 
+            :key="'lblchks'+item.id"  > 
                 <input  :id="'c'+meta.controlId" 
                 type="checkbox"
                 :name="'c'+meta.controlId"  
                 :class="meta.class" 
-                :value="value" 
+                :value="item.id"
                 :readonly="meta.readonly"
-               
+                :key="'chks'+item.id"
                 @input="checkChange($event)"
                 >
                 <span>{{item.name}}</span>
@@ -230,14 +235,14 @@
             <label role="checkbox" 
             v-for="item in meta.list" 
             class="checkbox_g_t" 
-            :key="item.value"  > 
+            :key="'lblchk'+item.id"  > 
                 <input  :id="'c'+meta.controlId" 
                 type="checkbox"
                 :name="'c'+meta.controlId"  
                 :class="meta.class" 
-                :value="value" 
+                :value="item.id"
                 :readonly="meta.readonly"
-               
+                :key="'chk'+item.id"
                 @input="checkChange($event)"
                 >
                 <span>{{item.name}}</span>
