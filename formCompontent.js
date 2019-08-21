@@ -38,17 +38,26 @@
     },
     methods:{
         //text
-        textChange:function(event, meta){
+        textInput:function(event, meta){
             var returnValue = '';
             returnValue = event.target.value;
             //添加自己的监听事件
-            this.$emit('myInput', returnValue,event.target, meta);  
+            //this.$emit('myInput', returnValue,event.target, meta);  
         
             //vue的回调
             this.$emit('input',returnValue);
             
         },
-
+        textChange:function(event, meta){
+            var returnValue = '';
+            returnValue = event.target.value;
+            //添加自己的监听事件
+            this.$emit('change', returnValue,event.target, meta);  
+        
+            //vue的回调
+            //this.$emit('input',returnValue);
+            
+        },
         //select
         selectChange:function(event, meta){
         //单选
@@ -137,6 +146,7 @@
             :rows="meta.rows" 
             :cols="meta.cols" 
             @input="$emit('input',$event.target.value)"  
+            @onkeyup="textChange($event,meta)"
             :placeholder="meta.placeholder"
             >
             </textarea>
@@ -161,8 +171,8 @@
             :list="meta.listKey"
             :title="meta.title"
             
-           
-            @input="$emit('input',$event.target.value)"  
+            @input="textInput($event,meta)"
+            @change="textChange($event,meta)"
              
             :key="'ckey_'+meta.controlId">
 

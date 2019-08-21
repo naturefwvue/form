@@ -766,8 +766,11 @@ var formModel ={
     maxlength: 20, //controlExtend.maxlen
     autocomplete: 'on', //off
     min: 1, //滑块的最小值
-    max: 1, //滑块的最大值
+    max: 100, //滑块的最大值
     step: 1, //滑块的步长
+    mindate:'',
+    maxdate:'',
+    
     multiple: false, //是否可以有多个值，用于上传文件
     
     listKey:'browsers', //备选文字
@@ -1715,6 +1718,75 @@ var formControl={
         
         autocomplete: 'on'  //off
         
-    }
+    },
+
+    //备选项列表需要的
+    listNumber:{
+        controlId: 'listNumber', //ColumnID
+        controlType: 111, //text ControlTypeID
+        colName: '备选项列数', //ColName
+        isClear: false, //isClear  连续添加时是否清空
+    
+        //通用
+        type:'search',   //input的类型
+          
+        tabIndex:0, // tab 键顺序
+        class:'cssTxt input_t1',
+     
+        //文本框类
+        name:'pattern',
+        value: '1', //DefaultValue
+        title: '', //ColTitle ColHelp
+        placeholder: '备选项列数', //CheckTip
+        max:100,
+        size: 2, //controlExtend.size
+        maxlength: 3, //controlExtend.maxlen
+        
+        autocomplete: 'on'  //off
+        
+    },
+    listId:{
+        controlId: 'listId', //ColumnID
+        controlType: 116, //text ControlTypeID
+        colName: '选项ID', //ColName
+        isClear: false, //isClear  连续添加时是否清空
+    
+        //通用
+        tabIndex:0, // tab 键顺序
+        class:'cssTxt input_t1',
+        //文本框类
+        name:'listId',
+        value: '', //DefaultValue
+        title: '', //ColTitle ColHelp
+        placeholder: '请填写选项ID', //CheckTip
+        
+        size: 2, //controlExtend.size
+        maxlength: 2, //controlExtend.maxlen
+        
+        autocomplete: 'on'  //off
+        
+    }, 
+    listName:{
+        controlId: 'listName', //ColumnID
+        controlType: 116, //text ControlTypeID
+        colName: '选项名称', //ColName
+        
+        //通用
+        required: true, //必填 CheckTypeID
+        tabIndex:0, // tab 键顺序
+        class:'cssTxt input_t1',
+     
+        //文本框类
+        name:'listName',
+        value: '', //DefaultValue
+        title: '', //ColTitle ColHelp
+        placeholder: '请填写选项名称', //CheckTip
+        
+        size: 20, //controlExtend.size
+        maxlength: 50, //controlExtend.maxlen
+        
+        autocomplete: 'on'  //off
+        
+    } 
 
 }

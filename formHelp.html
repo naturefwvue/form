@@ -46,7 +46,7 @@
     </div>
 
     <div style="float: left;">
-        <div id="divText" style="width: 470px;height: 600px; padding: 10px; border: 1px solid #333;display: block;">
+        <div id="divText" style="width: 470px;height: 700px; padding: 10px; border: 1px solid #333;display: block;">
             <span id="FrmCommonForm">
                 <table rules="all" class="tablem tableClass02">
                     <tbody>
@@ -55,26 +55,36 @@
                             :key="'tr'+formControl[item].controlId" style="display: table-row;">
                                 <td align="right">{{formControl[item].colName}}：</td>
                                 <td align="left">
-                                    <my-input v-model="formValue[formControl[item].controlId]" :meta="formControl[item]" ></my-input>
-                                    {{item.controlId}}
+                                    <my-input v-if="item != 'list'" v-model="formValue[formControl[item].controlId]" :meta="formControl[item]" ></my-input>
+                                    <span v-else-if="item == 'list'">
+                                        <!--设置备选项-->
+                                        备选项数量：<my-input @change="setListItem"  v-model="listItem.number" value="1" :meta="formControl.listNumber"> </my-input>
+                                                    
+                                        <div v-for="item in listItem.item">
+                                            <my-input v-model="item.id"  :meta="formControl.listId"></my-input>
+                                            <my-input v-model="item.name"  :meta="formControl.listName"> </my-input>
+                                        </div>
+                                    </span>
+                                    {{item}}
                                 </td>
                         </tr>
                     </tbody>
                 </table>
             </span>
-        </div>
-       
+         
+           
+       </div>
     </div>
 
     
     <div style="float: left;text-align:left;width: 330px;height: 500px;padding: 5px;border: 1px solid #333;">
         代码：<br>
         {{formValue.controlType}}<br> 
-        <textarea id="txtMeta" v-model="showMsg" name="S1" cols="40" rows="30"></textarea>
+        <textarea id="txtMeta" v-model="createJsonCode" name="S1" cols="40" rows="30"></textarea>
     </div>
-    <div style="float: left;text-align:left;width: 430px;height: 500px;padding: 5px;border: 1px solid #333;">
+    <div style="float: left;text-align:left;width: 330px;height: 500px;padding: 5px;border: 1px solid #333;">
             预览<br>
-            <my-input v-model="viewValue" :meta="showView"></my-input>
+            <my-input v-model="viewValue" :meta="createJson"></my-input>
             <br><br><br><br><br><br>
             值：{{viewValue}}
         </div>
@@ -89,21 +99,31 @@
             data: {
                 json:'',
                 ctlTypeState:{
+                    //tab切换
                     textShow:true,
-                    
                 },
                 
-                ctlMeta:{},
+                ctlMeta:{}, //控件需要的json
                 ctlTypeText:[100, 101, 102, 103, 104, 105, 106, 107,
                     108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118] ,
                 ctlTypeList:[150,151,152,153,154,155]  ,
                 
                 formControl: {
-               
                 },
                 viewValue:'',
+
+                //绑定的值
                 formValue: {
-                  
+                },
+
+                //别选项的值
+                listItem:{
+                    number:1,
+                    item:[
+                        {id:1,
+                        name:''
+                        }
+                    ]
                 }
             },
             created: function () {
@@ -115,57 +135,64 @@
 
             },
             computed:{
-                showMsg:function(){
+                //创建备选项
+                creatList:function(value){
                     var re = "";
+                    var arr = [];
 
-                     for(var key in this.formValue) {
-                         var val = this.formValue[key];
-
-                         var isNum = !isNaN(val);
-                         if (val === 'true' || val === 'false')
-                            isNum = true;
-
-                         re += '\r\n    ' + key + ":";
-                         if (!isNum) re +="'";
-                         re += this.formValue[key];
-                         if (!isNum) re +="'";
-                           
-                     }
+                    re = '[{"id":'+value+',"name":"ee'+ this.listItem.number +'"}]';
 
                     return re;
                 },
-                showView:function(){
-                    var re = '{"a":""';
-                     
-                    for(var key in this.formValue) {
-                        if (key !== 'review') {
-                            var val = this.formValue[key];
-                            var isNum = !isNaN(val);
-                            if (val === 'true' || val === 'false')
+
+                //创建json对象，供预览用
+                createJson:function(){
+                    var re = "";
+                    var arr = [];
+
+                    for (var i in this.ctlMeta[this.formValue.controlType].showIds){
+                        var key = this.ctlMeta[this.formValue.controlType].showIds[i]
+                        var val = this.formValue[key];
+                        var tmp ='"' + key + '":';
+
+                        var isNum = !isNaN(val); //判断是不是数字
+
+                        if (val === 'true' || val === 'false')
+                            isNum = true; // 视为数字
+
+                        if (val === '' || val === null)
+                            isNum = false; //要加双引号
+                        
+                        if (val.length >0){
+                            if (val.substring(0,1) === '[')
+                                isNum = true;
+                            if (val.substring(0,1) === '{')
                                 isNum = true;
 
-                            if (val === '' || val === null)
-                                isNum = false;
-                            if (val.length >0){
-                                 if (val.substring(0,1) === '[')
-                                    isNum = true;
-                                if (val.substring(0,1)=== '{')
-                                    isNum = true;
-
-                                val = val.replace(/\n/g,'').replace(/\r/g,'');
-                            }
-                           
-
-                            re += ',"' + key + '":';
-                            if (!isNum) re +='"';
-                            re += val;
-                            if (!isNum) re +='"';
-                            
                         }
+
+                        if (!isNum) tmp +='"';
+
+                        if (key === 'list'){
+                            var item =  this.listItem.item;
+                            var arrItem = [];
+                            for (var i=0;i<item.length;i++){
+                                arrItem.push('{"id":' + item[i].id + ',"name":"' + item[i].name+'"}');
+                            }
+                            tmp += '['+ arrItem.join(',') +']';
+                        }else{
+                            tmp += this.formValue[key];
+                        }
+                        
+                        if (!isNum) tmp +='"';
+
+                        arr.push(tmp);
+
                     }
 
-                    re+="}";
-
+                    re= arr.join(',');
+                    re = '{'+ re  + '}';
+                    
                     var j = "";
 
                     try{
@@ -175,13 +202,78 @@
                         alert('描述信息格式不正确，不能转换成json');
                         j=formModel
                     }
- 
-                    this.json = j;
-                    return j;
-                }
 
+                    this.json = j;
+
+                    return j;
+                },
+                //创建json字符串，供代码用
+                createJsonCode:function(){
+                    var re = "";
+                    var arr = [];
+
+                    for (var i in this.ctlMeta[this.formValue.controlType].showIds){
+                        var key = this.ctlMeta[this.formValue.controlType].showIds[i]
+                        var val = this.formValue[key];
+                        var tmp ='\r\n    ' + key + ':';
+
+                        var isNum = !isNaN(val); //判断是不是数字
+
+                        if (val === 'true' || val === 'false')
+                            isNum = true; // 视为数字
+
+                        if (val === '' || val === null)
+                            isNum = false; //要加双引号
+                        
+                        if (val.length >0){
+                            if (val.substring(0,1) === '[')
+                                isNum = true;
+                            if (val.substring(0,1) === '{')
+                                isNum = true;
+
+                        }
+
+                        if (!isNum) tmp +='"';
+                        if (key === 'list'){
+                            var item =  this.listItem.item;
+                            var arrItem = [];
+                            for (var i=0;i<item.length;i++){
+                                arrItem.push('{"id":' + item[i].id + ',"name":"' + item[i].name+'"}');
+                            }
+                            tmp += '['+ arrItem.join(',') +']';
+                        }else{
+                            tmp += this.formValue[key];
+                        }
+                       
+                        if (!isNum) tmp +='"';
+
+                        arr.push(tmp);
+
+                    }
+
+                    re= arr.join(',');
+                    re = 'c:{'+ re  + '\r\n};';
+                    
+                    return re;
+                }
+                 
             },
             methods: {
+                //设置备选项
+                setListItem:function(returnValue,event, meta){
+                    var val = returnValue;
+                    //alert(returnValue);
+                    
+                    this.listItem.item = [];
+
+                    for(var i=0;i<parseInt(val);i++){
+                        this.listItem.item.push({
+                            id:i+1,
+                            name:''
+                        })
+                    }
+
+                },
                 //切换tab标签
                 tabChange:function(type){
                     //显示文本框类

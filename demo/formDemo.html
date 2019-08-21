@@ -12,8 +12,10 @@
 <body style="font-size: 30px;">
 组件11
 <div id="components-demo">
-    <my-input v-model="formValue.v1" :meta="formControl.c1" ></my-input>
+    <my-input v-model="formValue.v1"  :meta="formControl.c1" ></my-input>
      {{formValue.v1}}
+     <my-input v-model="formValue.v2" @change="fun" :meta="formControl.c2" ></my-input>
+     {{formValue.v2}}
 </div>
 
 <script  type="text/javascript">
@@ -64,22 +66,35 @@
                             "name": "北京",
                             "check": false
                         }
-                       // , {
-                        //    id: '2',
-                        //    name: '上海',
-                       //     check: false
-                       // }, {
-                       //     id: '3',
-                       //     name: '广州',
-                       //     check: false
-                      //  }
+                        , {
+                            id: '2',
+                            name: '上海',
+                            check: false
+                        }, {
+                            id: '3',
+                            name: '广州',
+                            check: false
+                        }
                     ]
                 
-
+                },
+                    c2:{
+                        //controlId: 'colName', //ColumnID
+                        controlType: 116//,  
+                        //colName: '对外名称', //ColName
+                       // isClear: false, //isClear  连续添加时是否清空
+                    
+                       // class:'cssTxt input_t1',
+                       // value: '控件',  
+                      //  placeholder: '请填写标题',  
+                      //  size: 30,  
+                       // maxlength: 50
                 }
+
             },
             formValue:{
-                v1:''
+                v1:'',
+                v2:''
             }
         },
         created:function(){
@@ -87,12 +102,15 @@
 
         },
         methods:{
-            fun:function(data) {
+            fun:function(data ) {
                 alert(data);
             }
         }
     });
 
+    function fun1(data){
+ alert(data);
+    }
 </script >
 
 </body>
