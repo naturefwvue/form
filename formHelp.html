@@ -29,15 +29,15 @@
                 <li id="divCtl20" @click="tabChange('list')" :class="{'current':!ctlTypeState.textShow}">列表框</li>
             </ul>
         </div>
-        <div class="tabcontent">
+        <div class="tabcontent"  style="cursor:hand">
             <div id="divKuang10" class="layout" v-show="ctlTypeState.textShow">
-                <div  v-for="key in ctlTypeText"   :id="'divCtl'+key" :key="'ctlT'+key">
+                <div style="cursor:hand;margin:3px;"  v-for="key in ctlTypeText" @click="setJosn(key)" :id="'divCtl'+key" :key="'ctlT'+key">
                     {{ctlMeta[key].name}}
                 </div>
                 
             </div>
             <div id="divKuang20" class="layout"  v-show="!ctlTypeState.textShow">
-                <div  v-for="key in ctlTypeList"   :id="'divCtl'+key" :key="'ctlT'+key">
+                <div style="cursor:hand"  v-for="key in ctlTypeList" @click="setJosn(key)" :id="'divCtl'+key" :key="'ctlT'+key">
                     {{ctlMeta[key].name}}
                 </div>
             </div>
@@ -135,6 +135,7 @@
 
             },
             computed:{
+               
                 //创建备选项
                 creatList:function(value){
                     var re = "";
@@ -259,6 +260,11 @@
                  
             },
             methods: {
+                //菜单触发的选择
+                setJosn:function(key){
+                    this.formValue.controlType = key;
+                },
+                
                 //设置备选项
                 setListItem:function(returnValue,event, meta){
                     var val = returnValue;

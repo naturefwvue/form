@@ -32,7 +32,7 @@ var controlMeta = {
     101:{
         id:'101',
         typeName:'text',
-        name:'单行文本框22',
+        name:'单行文本框',
         showIds:[
             'controlId',
             'controlType',
@@ -236,8 +236,8 @@ var controlMeta = {
             'controlId',
             'controlType',
             'colName',
-            'isClear',
-            'tabIndex',
+            //'isClear',
+            //'tabIndex',
             'class',
             'title',
          
@@ -265,7 +265,7 @@ var controlMeta = {
             'controlId',
             'controlType',
             'colName',
-            'isClear',
+            //'isClear',
             'tabIndex',
             'class',
             'title',
@@ -461,7 +461,7 @@ var controlMeta = {
             'controlId',
             'controlType',
             'colName',
-            'isClear',
+            //'isClear',
             'tabIndex',
             'class',
             'title',
@@ -760,7 +760,7 @@ var formModel ={
     name:'',
     value: '', //DefaultValue
     title: '', //ColTitle ColHelp
-    placeholder: '请输入姓名2222', //CheckTip
+    placeholder: '请输入姓名', //CheckTip
     readonly: false, //只读 ControlState
     size: 20, //controlExtend.size
     maxlength: 20, //controlExtend.maxlen

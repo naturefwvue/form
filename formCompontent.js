@@ -197,7 +197,7 @@
                 v-for="(item,index) in meta.list" 
                 :key="index"  
                 :value="item.id" 
-                :selected="item.check">
+                :selected="value==item.id">
                     {{item.name}}
                 </option> 
 
