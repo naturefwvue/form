@@ -887,7 +887,7 @@ var formControl={
             {
                 id:'1',
                 name:'是',
-                selected:true
+                check:true
             } 
         ],
 
@@ -922,7 +922,7 @@ var formControl={
             {
                 id:'1',
                 name:'可以一次上传多个文件',
-                selected:true
+                check:true
             } 
         ],
 
@@ -958,129 +958,129 @@ var formControl={
             {
                 id:'textarea',
                 name:'textarea',
-                selected:true
+                check:true
             },
             {
                 id:'text',
                 name:'text',
-                selected:false
+                check:false
             },
             {
                 id:'password',
                 name:'password',
-                selected:false
+                check:false
             },
             {
                 id:'date',
                 name:'date',
-                selected:false
+                check:false
             },
             {
                 id:'datetime-local',
                 name:'datetime-local',
-                selected:false
+                check:false
             },
             {
                 id:'time',
                 name:'time',
-                selected:false
+                check:false
             },
             {
                 id:'month',
                 name:'month',
-                selected:false
+                check:false
             },
             {
                 id:'week',
                 name:'week',
-                selected:false
+                check:false
             },
             {
                 id:'file',
                 name:'file',
-                selected:false
+                check:false
             },
             {
                 id:'file',
                 name:'file',
-                selected:false
+                check:false
             },
             {
                 id:'color',
                 name:'color',
-                selected:false
+                check:false
             },
             {
                 id:'number',
                 name:'number',
-                selected:false
+                check:false
             },{
                 id:'tel',
                 name:'tel',
-                selected:false
+                check:false
             },{
                 id:'email',
                 name:'email',
-                selected:false
+                check:false
             },{
                 id:'url',
                 name:'url',
-                selected:false
+                check:false
             },
             {
                 id:'range',
                 name:'range',
-                selected:false
+                check:false
             },
             {
                 id:'search',
                 name:'search',
-                selected:false
+                check:false
             },
             {
                 id:'text',
                 name:'text',
-                selected:false
+                check:false
             },
             {
                 id:'text',
                 name:'text',
-                selected:false
+                check:false
             },
             {
                 id:'fulltext',
                 name:'fulltext',
-                selected:false
+                check:false
             },
             {
                 id:'select',
                 name:'select',
-                selected:false
+                check:false
             },
             {
                 id:'select',
                 name:'select',
-                selected:false
+                check:false
             },
             {
                 id:'selectMore',
                 name:'selectMore',
-                selected:false
+                check:false
             },
             {
                 id:'radios',
                 name:'radios',
-                selected:false
+                check:false
             },
             {
                 id:'checkbox',
                 name:'checkbox',
-                selected:false
+                check:false
             },
             {
                 id:'checkbox',
                 name:'checkbox',
-                selected:false
+                check:false
             }
             
     ]
@@ -1108,7 +1108,7 @@ var formControl={
             {
                 id:'1',
                 name:'禁用',
-                selected:true
+                check:true
             } 
         ]
     },
@@ -1134,7 +1134,7 @@ var formControl={
             {
                 id:'1',
                 name:'必填',
-                selected:true
+                check:true
             } 
         ]
     } ,
@@ -1449,7 +1449,7 @@ var formControl={
             {
                 id:'1',
                 name:'只读',
-                selected:true
+                check:true
             } 
         ]
     } ,
@@ -1527,7 +1527,7 @@ var formControl={
             {
                 id:'1',
                 name:'记住',
-                selected:true
+                check:true
             } 
         ]
     } ,

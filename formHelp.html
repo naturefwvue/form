@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -29,15 +29,15 @@
                 <li id="divCtl20" @click="tabChange('list')" :class="{'current':!ctlTypeState.textShow}">列表框</li>
             </ul>
         </div>
-        <div class="tabcontent"  style="cursor:hand">
+        <div class="tabcontent"  style="cursor:pointer">
             <div id="divKuang10" class="layout" v-show="ctlTypeState.textShow">
-                <div style="cursor:hand;margin:3px;"  v-for="key in ctlTypeText" @click="setJosn(key)" :id="'divCtl'+key" :key="'ctlT'+key">
+                <div style="cursor:pointer;margin:3px;"  v-for="key in ctlTypeText" @click="setJosn(key)" :id="'divCtl'+key" :key="'ctlT'+key">
                     {{ctlMeta[key].name}}
                 </div>
                 
             </div>
             <div id="divKuang20" class="layout"  v-show="!ctlTypeState.textShow">
-                <div style="cursor:hand"  v-for="key in ctlTypeList" @click="setJosn(key)" :id="'divCtl'+key" :key="'ctlT'+key">
+                <div style="cursor:pointer"  v-for="key in ctlTypeList" @click="setJosn(key)" :id="'divCtl'+key" :key="'ctlT'+key">
                     {{ctlMeta[key].name}}
                 </div>
             </div>
@@ -108,15 +108,13 @@
                     108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118] ,
                 ctlTypeList:[150,151,152,153,154,155]  ,
                 
-                formControl: {
-                },
+                formControl: { },
                 viewValue:'',
 
                 //绑定的值
-                formValue: {
-                },
+                formValue: { },
 
-                //别选项的值
+                //备选项的值
                 listItem:{
                     number:1,
                     item:[
@@ -136,12 +134,12 @@
             },
             computed:{
                
-                //创建备选项
+                //依据控件类型创建备选项的绑定值
                 creatList:function(value){
                     var re = "";
                     var arr = [];
 
-                    re = '[{"id":'+value+',"name":"ee'+ this.listItem.number +'"}]';
+                    re = '[{"id":'+value+',"name":"ee'+ this.listItem.number +'","check":false}]';
 
                     return re;
                 },
